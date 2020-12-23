@@ -1,5 +1,7 @@
 const request = require('postman-request')
 
+
+
 const forcast = (latitude, longtitude, callback) => {
     const url = 'http://api.weatherstack.com/current?access_key=0b7071413ffb788d39556f7def48166b&query=' + latitude + ',' + longtitude;
 
@@ -11,7 +13,8 @@ const forcast = (latitude, longtitude, callback) => {
         } else {
             const message = body.current.weather_descriptions[0] + 
             '. It is currently ' + body.current.temperature + 
-            ' degrees out. There is a '+ body.current.precip + ' chance of rain.'
+            ' degrees out. There is a '+ body.current.precip + ' chance of rain. There is: '
+            + body.current.humidity +"% humidity and it feel like " + body.current.feelslike + ' degrees'
             callback(undefined, message)
         } 
     })
